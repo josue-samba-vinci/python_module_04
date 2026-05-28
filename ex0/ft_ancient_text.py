@@ -21,6 +21,7 @@ def read_file() -> None:
         print("---")
         print(f"File '{sys.argv[1]}' closed.")
 
+
 def main() -> None:
     read_file()
 
