@@ -42,7 +42,6 @@ def read_file() -> None:
             print(f"Data saved in file '{new_name}'")
 
 
-
 def main() -> None:
     read_file()
 

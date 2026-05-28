@@ -11,7 +11,8 @@ def read_file() -> None:
         try:
             f: typing.IO = open(f"{sys.argv[1]}", "r")
         except OSError as e:
-            sys.stderr.write(f"[STDERR] Error opening file '{sys.argv[1]}': {e}\n")
+            sys.stderr.write(f"[STDERR] Error opening file '{sys.argv[1]}'"
+                             f": {e}\n")
             sys.stderr.flush()
             return
         content = f.read()
@@ -39,14 +40,17 @@ def read_file() -> None:
         else:
             try:
                 new_file = open(f"{new_name}", "w")
-            except PermissionError as e:
+            except OSError as e:
                 print(f"Saving data to '{new_name}'")
-                sys.stderr.write(f"[STDERR] Error opening file '{new_name}': {e}\n")
-                print(f"Data not saved")
+                sys.stderr.write(f"[STDERR] Error opening file '{new_name}'"
+                                 f": {e}\n")
+                sys.stderr.flush()
+                print("Data not saved")
                 return
             print(f"Saving data to '{new_name}'")
+            new_file.write(modified_lines)
+            new_file.close()
             print(f"Data saved in file '{new_name}'")
-
 
 
 def main() -> None:
