@@ -33,12 +33,12 @@ def read_file() -> None:
         print("---")
         new_name = input("Enter new file name (or empty): ")
         if not new_name:
-            print("Not saving data")
+            print("Not saving data.")
         else:
             new_file = open(f"{new_name}", "w")
+            print(f"Saving data to '{new_name}'")
             new_file.write(modified_lines)
             new_file.close()
-            print(f"Saving data to '{new_name}'")
             print(f"Data saved in file '{new_name}'")
 
 

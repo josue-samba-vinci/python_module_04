@@ -36,7 +36,7 @@ def read_file() -> None:
         sys.stdout.flush()
         new_name = sys.stdin.readline().rstrip("\n")
         if not new_name:
-            print("Not saving data")
+            print("Not saving data.")
         else:
             try:
                 new_file = open(f"{new_name}", "w")

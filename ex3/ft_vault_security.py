@@ -8,7 +8,7 @@ def secure_archive(
         else:
             with open(file_name, "w") as file:
                 file.write(content)
-                return(True, "'Content successfully written to file'")
+                return(True, "Content successfully written to file")
     except OSError as e:
         return (False, str(e))
 
