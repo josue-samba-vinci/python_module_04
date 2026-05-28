@@ -9,7 +9,7 @@ def read_file() -> None:
         print("=== Cyber Archives Recovery ===")
         print(f"Accessing file '{sys.argv[1]}'")
         try:
-            f = open(f"{sys.argv[1]}", "r")
+            f: typing.IO = open(f"{sys.argv[1]}", "r")
         except OSError as e:
             print(f"Error opening file '{sys.argv[1]}': {e}")
             return
