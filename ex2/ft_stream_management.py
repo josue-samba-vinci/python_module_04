@@ -3,7 +3,7 @@ import sys
 
 
 def read_file() -> None:
-    if(len(sys.argv) != 2):
+    if len(sys.argv) != 2:
         print("Usage: ft_ancient_text.py <file>")
     else:
         print("=== Cyber Archives Recovery & Preservation ===")

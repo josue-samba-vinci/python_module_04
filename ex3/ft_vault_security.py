@@ -4,11 +4,11 @@ def secure_archive(
     try:
         if action == "r":
             with open(file_name, "r") as file:
-                return(True, file.read())
+                return (True, file.read())
         else:
             with open(file_name, "w") as file:
                 file.write(content)
-                return(True, "Content successfully written to file")
+                return (True, "Content successfully written to file")
     except OSError as e:
         return (False, str(e))
 
