@@ -6,10 +6,10 @@ def read_file() -> None:
     if len(sys.argv) != 2:
         print("Usage: ft_ancient_text.py <file>")
     else:
-        print("=== Cyber Archives Recovery ===")
+        print("=== Cyber Archives Recovery & Preservation ===")
         print(f"Accessing file '{sys.argv[1]}'")
         try:
-            f: typing.IO = open(f"{sys.argv[1]}", "r")
+            f: typing.IO[str] = open(f"{sys.argv[1]}", "r")
         except OSError as e:
             print(f"Error opening file '{sys.argv[1]}': {e}")
             return

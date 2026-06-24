@@ -1,6 +1,6 @@
 def secure_archive(
         file_name: str, action: str = "r", content: str = ""
-        ) -> tuple:
+        ) -> tuple[bool, str]:
     try:
         if action == "r":
             with open(file_name, "r") as file:
@@ -18,7 +18,7 @@ def main() -> None:
     print("Using 'secure_archive' to read from a nonexistent file:")
     print(secure_archive("/not/existing/file"))
     print("Using 'secure_archive' to read from an inaccessible file:")
-    print(secure_archive("/etc/shadow"))
+    print(secure_archive("/etc/master.passwd"))
     print("Using 'secure_archive' to read from a regular file:")
     previous_content = secure_archive("ancient_fragment.txt")
     print(previous_content)
