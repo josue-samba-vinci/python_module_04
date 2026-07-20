@@ -15,8 +15,17 @@ def read_file() -> None:
                              f": {e}\n")
             sys.stderr.flush()
             return
-        content = f.read()
-        f.close()
+        try:
+            content = f.read()
+        except UnicodeDecodeError as e:
+            sys.stderr.write(f"Error reading file '{sys.argv[1]}': "
+                             f"not valid UTF-8 ({e})")
+            return
+        except (Exception) as e:
+            sys.stderr.write(f"Error : {e}")
+            return
+        finally:
+            f.close()
         print("---")
         print()
         print(f"{content}")
@@ -32,9 +41,13 @@ def read_file() -> None:
         print()
         print(modified_lines)
         print("---")
-        sys.stdout.write("Enter new file name (or empty): ")
-        sys.stdout.flush()
-        new_name = sys.stdin.readline().rstrip("\n")
+        try:
+            sys.stdout.write("Enter new file name (or empty): ")
+            sys.stdout.flush()
+            new_name = sys.stdin.readline().rstrip("\n")
+        except KeyboardInterrupt:
+            sys.stderr.write("Error")
+            return
         if not new_name:
             print("Not saving data.")
         else:

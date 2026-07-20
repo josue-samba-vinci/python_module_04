@@ -13,8 +13,16 @@ def read_file() -> None:
         except OSError as e:
             print(f"Error opening file '{sys.argv[1]}': {e}")
             return
-        content = f.read()
-        f.close()
+        try:
+            content = f.read()
+        except UnicodeDecodeError as e:
+            print(f"Error reading file '{sys.argv[1]}': not valid UTF-8 ({e})")
+            return
+        except (Exception, BaseException) as e:
+            print(f"Error : {e}")
+            return
+        finally:
+            f.close()
         print("---")
         print()
         print(f"{content}")

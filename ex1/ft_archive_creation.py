@@ -13,8 +13,16 @@ def read_file() -> None:
         except OSError as e:
             print(f"Error opening file '{sys.argv[1]}': {e}")
             return
-        content = f.read()
-        f.close()
+        try:
+            content = f.read()
+        except UnicodeDecodeError as e:
+            print(f"Error reading file '{sys.argv[1]}': not valid UTF-8 ({e})")
+            return
+        except (Exception) as e:
+            print(f"Error : {e}")
+            return
+        finally:
+            f.close()
         print("---")
         print()
         print(f"{content}")
@@ -28,10 +36,13 @@ def read_file() -> None:
         print()
         lines = content.splitlines()
         modified_lines = "\n".join(line + "#" for line in lines) + "\n"
-        print("---")
         print(modified_lines, end="")
         print("---")
-        new_name = input("Enter new file name (or empty): ")
+        try:
+            new_name = input("Enter new file name (or empty): ")
+        except (KeyboardInterrupt, EOFError):
+            print("Error")
+            return
         if not new_name:
             print("Not saving data.")
         else:
