@@ -46,12 +46,15 @@ def read_file() -> None:
         if not new_name:
             print("Not saving data.")
         else:
-            new_file = open(f"{new_name}", "w")
-            print(f"Saving data to '{new_name}'")
-            new_file.write(modified_lines)
-            new_file.close()
-            print(f"Data saved in file '{new_name}'")
-
+            try:
+                new_file = open(f"{new_name}", "w")
+                print(f"Saving data to '{new_name}'")
+                new_file.write(modified_lines)
+                new_file.close()
+                print(f"Data saved in file '{new_name}'")
+            except OSError as e:
+                print(f"Error : {e}")
+                return
 
 def main() -> None:
     read_file()
